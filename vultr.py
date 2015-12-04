@@ -40,10 +40,8 @@ class Driver(object):
 
         return servers
 
-    def server_create(self, label, vpsplanid, osid, dcid, sshkeyid, enable_private_network, enable_backups):
-        data = {'label': label, 'VPSPLANID': vpsplanid, 'OSID': osid, 'DCID': dcid,
-                'SSHKEYID': sshkeyid, 'enable_private_network': self.yn(enable_private_network),
-                enable_backups: self.yn(enable_backups)}
+    def server_create(self, label, vpsplanid, osid, ipxe_chain_url, isoid, dcid, sshkeyid, enable_ipv6, enable_private_network, enable_backups, userdata, notify_activate, ddos_protection):
+        data = {'label': label, 'VPSPLANID': vpsplanid, 'OSID': osid, 'ipxe_chain_url': ipxe_chain_url, 'isoid': isoid, 'DCID': dcid, 'SSHKEYID': sshkeyid, 'enable_ipv6': enable_ipv6, 'enable_private_network': self.yn(enable_private_network), 'enable_backups': self.yn(enable_backups), 'userdata': userdata, 'notify_activate': notify_activate, 'ddos_protection': self.yn(ddos_protection) }
 
         r = requests.post(self.API_BASE_URL + '/server/create', params={'api_key': self.API_KEY}, data=data)
 
